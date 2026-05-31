@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ebrahim Sharifi, Ph.D., P.Eng. - Business & Supply Chain Analytics</title>
+<meta name="description" content="Ph.D. Industrial Engineer specializing in business analytics, predictive modeling, and supply chain optimization. Assistant Professor, Cape Breton University." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf7;
+  --bg-alt: #f3f1ec;
+  --ink: #1a1f24;
+  --ink-soft: #4a5560;
+  --ink-muted: #7a8590;
+  --line: #e3ddd2;
+  --accent: #0f5757;
+  --accent-soft: #d8e8e6;
+  --accent-deep: #073c3c;
+  --paper: #ffffff;
+  --gold: #b8893a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: var(--paper); }
+
+/* Typography */
+h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); }
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 400; font-variation-settings: 'opsz' 144; }
+h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; font-variation-settings: 'opsz' 96; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+h4 { font-size: 1.05rem; font-weight: 600; font-family: 'Manrope', sans-serif; letter-spacing: 0; }
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent-deep); }
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(251, 250, 247, 0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem;
+}
+.nav-brand {
+  font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.1rem;
+  color: var(--ink); letter-spacing: -0.01em;
+}
+.nav-brand .dot { color: var(--accent); }
+.nav-links { display: flex; gap: 1.75rem; align-items: center; }
+.nav-links a {
+  font-size: 0.875rem; color: var(--ink-soft); font-weight: 500;
+  position: relative; padding: 0.25rem 0;
+}
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 4px 0; transition: 0.3s; }
+
+/* Main container */
+main { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 8rem 0 4rem;
+  position: relative;
+}
+.hero-text { position: relative; z-index: 2; }
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+}
+.hero-eyebrow::before {
+  content: ''; width: 28px; height: 1px; background: var(--accent);
+}
+.hero h1 { margin-bottom: 1.25rem; }
+.hero h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.hero-tagline {
+  font-size: 1.2rem; color: var(--ink-soft); margin-bottom: 1.5rem; font-weight: 400;
+  max-width: 540px;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 1.25rem 2rem;
+  font-size: 0.9rem; color: var(--ink-muted);
+  margin-bottom: 2.5rem;
+}
+.hero-meta span { display: inline-flex; align-items: center; gap: 0.5rem; }
+.hero-meta svg { width: 16px; height: 16px; stroke: var(--accent); }
+
+.hero-cta { display: flex; flex-wrap: wrap; gap: 0.875rem; margin-bottom: 2.5rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.85rem 1.5rem; border-radius: 2px;
+  font-size: 0.9rem; font-weight: 500; cursor: pointer;
+  transition: all 0.25s; border: 1px solid transparent;
+  font-family: inherit;
+}
+.btn-primary { background: var(--accent); color: var(--paper); }
+.btn-primary:hover { background: var(--accent-deep); color: var(--paper); transform: translateY(-1px); box-shadow: 0 10px 25px -10px rgba(15,87,87,0.5); }
+.btn-secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-secondary:hover { background: var(--ink); color: var(--paper); }
+.btn svg { width: 16px; height: 16px; }
+
+.hero-socials { display: flex; gap: 0.75rem; }
+.social-link {
+  width: 42px; height: 42px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 50%;
+  color: var(--ink-soft); transition: all 0.25s;
+  background: var(--paper);
+}
+.social-link:hover {
+  color: var(--paper); background: var(--accent);
+  border-color: var(--accent); transform: translateY(-2px);
+}
+.social-link svg { width: 18px; height: 18px; }
+
+/* Hero portrait */
+.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+.portrait-frame {
+  position: relative;
+  width: 100%; max-width: 360px;
+  aspect-ratio: 4/5;
+}
+.portrait-frame::before {
+  content: ''; position: absolute;
+  inset: -20px -20px 20px 20px;
+  border: 1px solid var(--accent);
+  z-index: 1;
+}
+.portrait-frame img {
+  position: relative; z-index: 2;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  filter: grayscale(15%) contrast(1.02);
+  border-radius: 2px;
+}
+.portrait-badge {
+  position: absolute; bottom: -15px; right: -15px;
+  background: var(--paper); padding: 0.75rem 1.1rem;
+  border: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  z-index: 3; color: var(--ink-soft);
+  box-shadow: 0 4px 20px -8px rgba(0,0,0,0.1);
+}
+.portrait-badge strong { color: var(--accent); display: block; font-size: 1.4rem; font-family: 'Fraunces', serif; letter-spacing: -0.02em; }
+
+/* Decorative grid lines */
+.hero::after {
+  content: ''; position: absolute;
+  top: 0; right: -50px; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--line) 20%, var(--line) 80%, transparent);
+  pointer-events: none;
+}
+
+/* Section base */
+section.content {
+  padding: 6rem 0; position: relative;
+  border-top: 1px solid var(--line);
+}
+section.content:first-of-type { border-top: none; }
+
+.section-header {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 3rem; margin-bottom: 3.5rem; align-items: baseline;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  color: var(--ink-muted); letter-spacing: 0.15em;
+}
+.section-num strong { color: var(--accent); }
+.section-title { display: flex; flex-direction: column; gap: 0.5rem; }
+.section-title h2 em { font-style: italic; color: var(--accent); }
+.section-subtitle { color: var(--ink-soft); font-size: 1.05rem; max-width: 600px; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; }
+.about-sidebar { display: flex; flex-direction: column; gap: 2rem; }
+.fact-block {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  color: var(--ink-muted); letter-spacing: 0.05em;
+  padding-bottom: 1.25rem; border-bottom: 1px solid var(--line);
+}
+.fact-block:last-child { border-bottom: none; }
+.fact-block .label { text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.15em; margin-bottom: 0.4rem; }
+.fact-block .value { color: var(--ink); font-family: 'Manrope', sans-serif; font-weight: 500; font-size: 0.9rem; letter-spacing: 0; line-height: 1.4; }
+.about-body p { font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 1.25rem; }
+.about-body p:first-child { font-size: 1.2rem; color: var(--ink); font-family: 'Fraunces', serif; font-weight: 400; line-height: 1.5; }
+.about-body p strong { color: var(--ink); font-weight: 600; }
+
+/* Stats row */
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin-top: 3rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+.stat {
+  padding: 1.5rem 1.75rem; border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 0.25rem;
+}
+.stat:last-child { border-right: none; }
+.stat .num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 400; color: var(--accent); letter-spacing: -0.03em; line-height: 1; }
+.stat .label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); }
+
+/* Education */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.edu-item {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 3rem; padding: 2rem 0;
+  border-top: 1px solid var(--line);
+}
+.edu-item:first-child { border-top: none; padding-top: 0; }
+.edu-period {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+  color: var(--ink-muted); letter-spacing: 0.05em;
+}
+.edu-body h3 { margin-bottom: 0.35rem; font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.3rem; }
+.edu-body .school { color: var(--accent); font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: 500; }
+.edu-body p { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* Experience */
+.exp-item { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; padding: 2rem 0; border-top: 1px solid var(--line); }
+.exp-item:first-child { border-top: none; padding-top: 0; }
+.exp-body h3 { margin-bottom: 0.35rem; font-size: 1.2rem; font-family: 'Fraunces', serif; font-weight: 500; }
+.exp-body .org { color: var(--accent); font-weight: 500; margin-bottom: 1rem; font-size: 0.95rem; }
+.exp-body ul { padding-left: 1.25rem; }
+.exp-body ul li { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 0.5rem; }
+.exp-body ul li::marker { color: var(--accent); }
+
+/* Projects */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem; }
+.project-card {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 2rem; position: relative; transition: all 0.3s;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.project-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(15,87,87,0.15); }
+.project-card .proj-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; }
+.project-card h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 500; line-height: 1.3; }
+.project-card p { color: var(--ink-soft); font-size: 0.92rem; flex: 1; }
+.project-result { font-size: 0.88rem; padding: 0.875rem 1rem; background: var(--accent-soft); border-left: 2px solid var(--accent); color: var(--accent-deep); }
+.project-result strong { color: var(--accent-deep); }
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.project-tags span {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  padding: 0.3rem 0.6rem; background: var(--bg-alt); color: var(--ink-soft);
+  border-radius: 2px;
+}
+.project-card .pub-ref {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: var(--ink-muted); letter-spacing: 0.03em;
+  border-top: 1px solid var(--line); padding-top: 0.875rem;
+}
+
+/* Publications */
+.pub-section { margin-bottom: 3rem; }
+.pub-section-title {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pub-section-title .count { color: var(--ink-muted); font-weight: 400; }
+.pub-list { display: flex; flex-direction: column; gap: 0; }
+.pub-item {
+  display: grid; grid-template-columns: 60px 1fr;
+  gap: 1.5rem; padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.pub-item:last-child { border-bottom: none; }
+.pub-year { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--ink-muted); }
+.pub-body .pub-title { color: var(--ink); font-weight: 500; font-size: 0.98rem; line-height: 1.45; margin-bottom: 0.3rem; }
+.pub-body .pub-authors { color: var(--ink-soft); font-size: 0.88rem; font-style: italic; margin-bottom: 0.3rem; }
+.pub-body .pub-venue { color: var(--ink-muted); font-size: 0.85rem; }
+.pub-body .pub-venue .journal { font-style: italic; color: var(--accent); }
+.pub-body .pub-venue .badge {
+  display: inline-block; margin-left: 0.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  padding: 0.15rem 0.5rem; background: var(--accent-soft); color: var(--accent-deep);
+  border-radius: 2px; letter-spacing: 0.05em;
+}
+.pub-body .pub-venue .badge.review { background: #f5e8d4; color: #8b5a1a; }
+.pub-body a.pub-link { display: inline-block; margin-top: 0.35rem; font-size: 0.82rem; font-family: 'JetBrains Mono', monospace; }
+
+/* Conferences */
+.conf-list { display: flex; flex-direction: column; gap: 0; }
+.conf-item {
+  display: grid; grid-template-columns: 140px 1fr;
+  gap: 2rem; padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.conf-item:last-child { border-bottom: none; }
+.conf-date { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--ink-muted); }
+.conf-body h4 { font-weight: 500; font-size: 0.98rem; margin-bottom: 0.3rem; }
+.conf-body .conf-meta { color: var(--ink-soft); font-size: 0.88rem; }
+.conf-body .conf-meta .place { color: var(--accent); }
+.conf-body .conf-role {
+  display: inline-block; margin-top: 0.4rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  padding: 0.15rem 0.5rem; background: var(--accent-soft); color: var(--accent-deep);
+  border-radius: 2px; letter-spacing: 0.05em;
+}
+
+/* Honors and Affiliations */
+.honors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.honors-block h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line); }
+.honors-list { display: flex; flex-direction: column; gap: 1rem; }
+.honor-item { display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1rem; border-bottom: 1px dashed var(--line); }
+.honor-item:last-child { border-bottom: none; padding-bottom: 0; }
+.honor-icon { flex-shrink: 0; width: 32px; height: 32px; background: var(--accent-soft); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-family: 'Fraunces', serif; }
+.honor-icon svg { width: 16px; height: 16px; }
+.honor-body { flex: 1; }
+.honor-body h4 { font-size: 0.95rem; margin-bottom: 0.2rem; font-weight: 600; font-family: 'Manrope', sans-serif; }
+.honor-body p { color: var(--ink-muted); font-size: 0.85rem; }
+.honor-body p.amount { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+
+.affil-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.affil-item {
+  display: flex; align-items: center; gap: 0.875rem;
+  padding: 0.875rem 1rem; background: var(--paper); border: 1px solid var(--line);
+}
+.affil-item .affil-acronym {
+  font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 0.85rem;
+  color: var(--accent); min-width: 70px;
+}
+.affil-item .affil-name { font-size: 0.9rem; color: var(--ink-soft); }
+
+/* Certifications */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+.cert-card {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 1.75rem; position: relative; transition: all 0.3s;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.cert-issuer-row { display: flex; align-items: center; gap: 0.75rem; }
+.cert-logo {
+  width: 44px; height: 44px;
+  background: var(--accent-soft); color: var(--accent);
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 4px; font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500;
+  flex-shrink: 0;
+}
+.cert-issuer { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--ink-muted); text-transform: uppercase; }
+.cert-card h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500; line-height: 1.3; }
+.cert-meta { font-size: 0.82rem; color: var(--ink-muted); font-family: 'JetBrains Mono', monospace; }
+.cert-meta span { display: block; margin-bottom: 0.25rem; }
+.cert-verify {
+  margin-top: auto; padding-top: 0.875rem; border-top: 1px solid var(--line);
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  letter-spacing: 0.05em; color: var(--accent); font-weight: 500;
+}
+.cert-verify svg { width: 12px; height: 12px; }
+.cert-verify:hover { color: var(--accent-deep); }
+
+/* Teaching */
+.teaching-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.course-card {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 1.25rem;
+}
+.course-card .code { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.course-card h4 { font-size: 0.98rem; margin-bottom: 0.3rem; font-weight: 600; font-family: 'Manrope', sans-serif; }
+.course-card p { font-size: 0.82rem; color: var(--ink-muted); }
+
+/* Contact */
+.contact-section {
+  background: var(--ink); color: var(--paper);
+  padding: 5rem 0; margin-top: 4rem;
+  position: relative;
+}
+.contact-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.contact-section h2 { color: var(--paper); }
+.contact-section h2 em { color: var(--accent-soft); font-style: italic; }
+.contact-intro { color: rgba(255,255,255,0.75); font-size: 1.05rem; margin-top: 1rem; }
+.contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+.contact-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.contact-row:last-child { border-bottom: none; }
+.contact-row .icon { width: 40px; height: 40px; background: rgba(255,255,255,0.06); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-row .icon svg { width: 18px; height: 18px; color: var(--accent-soft); }
+.contact-row .label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.15rem; }
+.contact-row .value { color: var(--paper); font-size: 0.95rem; }
+.contact-row a { color: var(--paper); }
+.contact-row a:hover { color: var(--accent-soft); }
+
+/* Footer */
+footer { background: var(--ink); color: rgba(255,255,255,0.6); padding: 2rem; text-align: center; font-size: 0.82rem; border-top: 1px solid rgba(255,255,255,0.1); }
+footer .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+footer a { color: rgba(255,255,255,0.8); }
+
+/* Reveal animation */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Mobile */
+@media (max-width: 900px) {
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--paper); padding: 1rem 2rem; border-bottom: 1px solid var(--line); gap: 0.75rem; }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; }
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 7rem 0 3rem; min-height: auto; text-align: left; }
+  .hero-visual { order: -1; }
+  .portrait-frame { max-width: 260px; }
+  .hero::after { display: none; }
+  .section-header, .about-grid, .edu-item, .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: none; }
+  .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--line); }
+  .honors-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .pub-item, .conf-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .pub-year, .conf-date { font-size: 0.78rem; }
+  section.content { padding: 4rem 0; }
+  main { padding: 0 1.25rem; }
+  .nav-inner { padding: 0.875rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">Ebrahim Sharifi<span class="dot">.</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#conferences">Conferences</a>
+      <a href="#honors">Honors</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Ph.D. &middot; P.Eng. &middot; Industrial Engineer</div>
+      <h1>Ebrahim <em>Sharifi</em></h1>
+      <p class="hero-tagline">Business and supply chain analytics researcher and educator - bridging rigorous optimization with applied machine learning for industry and academia.</p>
+      <div class="hero-meta">
+        <span>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Toronto, ON, Canada
+        </span>
+        <span>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8l9 6 9-6"/></svg>
+          esharifi1372@gmail.com
+        </span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="assets/Ebrahim_Sharifi_Resume.pdf" download>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Resume
+        </a>
+        <a class="btn btn-secondary" href="assets/Ebrahim_Sharifi_CV.pdf" target="_blank">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          View Full CV
+        </a>
+      </div>
+      <div class="hero-socials">
+        <a class="social-link" href="https://www.linkedin.com/in/ebrahim-sharifi-ph-d-p-eng-2147b781/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="social-link" href="https://scholar.google.com/citations?user=1ErF1PwAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+        </a>
+        <a class="social-link" href="https://www.researchgate.net/profile/Ebrahim-Sharifi?ev=hdr_xprf" target="_blank" rel="noopener" aria-label="ResearchGate">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.121 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.062 0 .094.031.094.094 0 .264 0 .463-.014.612a2.7 2.7 0 0 1-.077.51c-.108.405-.316.7-.612.9-.297.197-.7.305-1.2.305-.43 0-.795-.107-1.083-.297-.288-.19-.51-.464-.65-.834a3.179 3.179 0 0 1-.137-.474 6.7 6.7 0 0 1-.087-.628 10.184 10.184 0 0 1-.043-.875c-.005-.348-.012-.764-.012-1.292 0-.526.007-.94.012-1.29.005-.348.018-.638.043-.873.024-.235.054-.444.087-.627.034-.184.08-.342.137-.476.14-.37.354-.65.643-.847.288-.198.65-.297 1.073-.297.36 0 .664.05.918.143.255.096.466.222.636.378.17.158.303.336.403.537.099.2.176.406.227.614.024.094.075.137.156.118l1.31-.275c.087-.023.118-.078.094-.166-.108-.331-.27-.65-.484-.946a3.31 3.31 0 0 0-.79-.795 3.83 3.83 0 0 0-1.107-.54A4.7 4.7 0 0 0 19.586 0zM8.217 5.892c-1.852 0-3.74.039-4.806.106l-.535.03c-.93.07-1.514.78-1.514 1.71v9.94c0 .93.586 1.624 1.514 1.71l.535.046c1.066.052 2.953.085 4.806.085v.001c1.851 0 3.74-.034 4.806-.086l.534-.045c.928-.085 1.514-.78 1.514-1.71v-9.94c0-.93-.586-1.64-1.514-1.71l-.534-.029c-1.066-.067-2.955-.106-4.806-.106zm0 1.572c.84 0 1.69.045 2.426.13.736.085 1.348.246 1.875.466.526.22.94.475 1.232.766.293.292.49.617.6.96.107.343.16.703.16 1.066v3.39c0 .363-.053.722-.16 1.064-.11.343-.307.668-.6.96-.291.29-.706.547-1.232.766-.527.22-1.14.382-1.875.466-.736.086-1.586.13-2.426.13-.84 0-1.69-.044-2.426-.13-.736-.084-1.348-.245-1.876-.465-.527-.22-.94-.476-1.232-.767-.293-.292-.49-.617-.6-.96-.108-.342-.16-.701-.16-1.064v-3.39c0-.363.052-.723.16-1.066.11-.343.307-.668.6-.96.292-.29.705-.546 1.232-.766.527-.22 1.14-.38 1.876-.466.736-.085 1.586-.13 2.426-.13z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="portrait-frame">
+        <img src="assets/profile.jpeg" alt="Ebrahim Sharifi portrait" />
+        <div class="portrait-badge">
+          <span>Citations</span>
+          <strong>442</strong>
+          Google Scholar
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="content reveal" id="about">
+    <div class="section-header">
+      <div class="section-num"><strong>01</strong> / About</div>
+      <div class="section-title">
+        <h2>An <em>analytics</em> career at the intersection of academia and industry.</h2>
+        <p class="section-subtitle">Where rigorous research meets practical decision-making.</p>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <aside class="about-sidebar">
+        <div class="fact-block">
+          <div class="label">Current Role</div>
+          <div class="value">Assistant Professor (LT)<br/>Cape Breton University</div>
+        </div>
+        <div class="fact-block">
+          <div class="label">Field</div>
+          <div class="value">Business Analytics &middot; Supply Chain Optimization &middot; Operations Research</div>
+        </div>
+        <div class="fact-block">
+          <div class="label">Looking For</div>
+          <div class="value">Roles in business, data, and supply chain analytics - academia or industry.</div>
+        </div>
+        <div class="fact-block">
+          <div class="label">Languages &amp; Tools</div>
+          <div class="value">Python · R · SQL · CPLEX · GAMS · Tableau · MATLAB</div>
+        </div>
+      </aside>
+
+      <div class="about-body">
+        <p>I am a Ph.D. industrial engineer specializing in business analytics, predictive modeling, and supply chain optimization - with applied research published in journals such as <em>Journal of Cleaner Production</em> (IF 9.8) and <em>Sustainable Production and Consumption</em> (IF 12.1).</p>
+        <p>Over three years at Cape Breton University's Shannon School of Business, I designed and delivered four post-baccalaureate analytics courses - Data Mining, Predictive Modeling, Data Visualization, and Quantitative Methods - to <strong>800+ students</strong>, earning consistent <strong>4.5-4.8 / 5</strong> ratings on official evaluations. I coached 100+ student teams through full ML pipelines on real Kaggle-style datasets across healthcare, e-commerce, and telecom.</p>
+        <p>Before academia, I spent four years in industry as a project manager and supply chain analyst at SAIPA Automotive Group, where I built multi-criteria decision frameworks and automated executive reporting. My research integrates <strong>multi-objective optimization, fuzzy logic, machine learning, and stochastic programming</strong> to solve sustainability and resiliency problems in agri-food and biomass supply chains.</p>
+
+        <div class="stats">
+          <div class="stat"><span class="num">9</span><span class="label">Peer-Reviewed Papers</span></div>
+          <div class="stat"><span class="num">442</span><span class="label">Google Scholar Citations</span></div>
+          <div class="stat"><span class="num">7</span><span class="label">h-index</span></div>
+          <div class="stat"><span class="num">800+</span><span class="label">Students Taught</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="content reveal" id="education">
+    <div class="section-header">
+      <div class="section-num"><strong>02</strong> / Education</div>
+      <div class="section-title">
+        <h2>Academic <em>training</em>.</h2>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="edu-item">
+        <div class="edu-period">2020 - 2023</div>
+        <div class="edu-body">
+          <h3>Ph.D., Mechanical &amp; Industrial Engineering</h3>
+          <div class="school">Toronto Metropolitan University (formerly Ryerson University), Canada</div>
+          <p>Dissertation: <em>Design and Optimization of Sustainable Food Supply Chain Networks</em>. Grade A+ (GPA 4.33 / 4.33). Completed in three years. Nominated for the Governor General's Gold Medal.</p>
+          <p style="margin-top: 0.4rem; font-size: 0.88rem; color: var(--ink-muted);">Supervisors: Dr. Saman Hassanzadeh Amin &amp; Dr. Liping Fang.</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-period">2016 - 2019</div>
+        <div class="edu-body">
+          <h3>M.Sc., Industrial Engineering - Engineering Management</h3>
+          <div class="school">Iran University of Science and Technology (IUST), Iran</div>
+          <p>Thesis: <em>Proposed a Taguchi-Based BWM Method Optimization Approach</em>. GPA: 90 / 100. Supervisor: Dr. Seyed Jafar Sadjadi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="content reveal" id="experience">
+    <div class="section-header">
+      <div class="section-num"><strong>03</strong> / Experience</div>
+      <div class="section-title">
+        <h2>Professional <em>experience</em>.</h2>
+        <p class="section-subtitle">Six years across academia, consulting, and industry.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="exp-item">
+        <div class="edu-period">Aug 2023 - Apr 2026</div>
+        <div class="exp-body">
+          <h3>Assistant Professor (Limited Term)</h3>
+          <div class="org">Cape Breton University · Shannon School of Business · Sydney, NS</div>
+          <ul>
+            <li>Designed and delivered four post-baccalaureate analytics courses (Data Mining, Predictive Modeling, Data Visualization, Quantitative Methods) across 6 sections/year; <strong>800+ students</strong> over three years.</li>
+            <li>Earned consistent <strong>4.5 - 4.8 / 5</strong> on official student evaluations (Fall 2025, n = 45, 85% response rate).</li>
+            <li>Supervised 100+ final group projects on real datasets (healthcare, e-commerce, telecom). Coached teams through full ML pipelines: data cleaning, feature engineering, model training, evaluation using XGBoost, Random Forest, ANN, K-Means in Python and R.</li>
+            <li>Co-supervised graduate research; co-authored applied analytics work with 460+ citations on Google Scholar.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="edu-period">Sep 2020 - Nov 2023</div>
+        <div class="exp-body">
+          <h3>Research &amp; Graduate Assistant</h3>
+          <div class="org">Toronto Metropolitan University · Toronto, ON</div>
+          <ul>
+            <li>Built multi-objective optimization and predictive models for sustainable supply chain decisions across wheat, soybean, and biomass case studies.</li>
+            <li>Published in top-tier journals (IF up to 12.1). Presented at CORS, INFORMS, IISE conferences; chaired the Supply Chain Optimization session at CORS / INFORMS Vancouver 2022.</li>
+            <li>Taught and TA'd Operations Research I &amp; II, Reliability/Decision Analysis, Project Management, Systems Modelling &amp; Simulation.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="edu-period">Oct 2018 - Jan 2020</div>
+        <div class="exp-body">
+          <h3>Project Manager</h3>
+          <div class="org">Mehr Naghsh Afarinan Shayan Company · Tehran, Iran</div>
+          <ul>
+            <li>Led a team of 5 to develop a tourism mobile application end-to-end: scope, scheduling, resource allocation, and delivery.</li>
+            <li>Managed stakeholder engagement and fund acquisition, presenting business cases to investors and coordinating across technical and business teams.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="edu-period">Oct 2017 - Nov 2018</div>
+        <div class="exp-body">
+          <h3>Supply Chain Analyst</h3>
+          <div class="org">SAIPA Automotive Group · Tehran, Iran</div>
+          <ul>
+            <li>Applied multi-criteria decision analysis (MCDA) to evaluate replacement vehicles for import/assembly (technical, cost, market criteria).</li>
+            <li>Conducted market analysis on bus procurement from China; automated recurring reporting processes across the strategic planning centre.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH & PROJECTS -->
+  <section class="content reveal" id="research">
+    <div class="section-header">
+      <div class="section-num"><strong>04</strong> / Research &amp; Projects</div>
+      <div class="section-title">
+        <h2>Selected <em>projects</em>.</h2>
+        <p class="section-subtitle">Optimization, predictive modeling, and decision support - applied end-to-end.</p>
+      </div>
+    </div>
+    <div class="projects-grid">
+      <article class="project-card">
+        <div class="proj-num">PROJECT / 01</div>
+        <h3>Sustainable Food Supply Chain Optimization under Uncertainty</h3>
+        <p>Two published multi-objective optimization studies designing sustainable, resilient agri-food supply chains under uncertainty: a real Ontario wheat network (farms, elevators, DCs, demand zones) with intermodal transport and winter-disruption effects, and the Canadian soybean export chain (→ China / Europe / USA) ranking suppliers across 20 sustainability criteria over 18 demand/price scenarios.</p>
+        <div class="project-result"><strong>Result:</strong> Wheat — intermodal transport cut costs 8% and delivery times 20% vs. truck-only. Soybean — SDG-aligned incentives offset a 12% profit gap, making sustainable sourcing viable.</div>
+        <div class="project-tags">
+          <span>Multi-Objective Optimization</span>
+          <span>Two-Stage Stochastic</span>
+          <span>Fuzzy Robust</span>
+          <span>Best-Worst Method</span>
+          <span>IBM CPLEX</span>
+        </div>
+        <div class="pub-ref">Published in <em>Journal of Cleaner Production</em> (IF 9.8) &amp; <em>Sustainable Production and Consumption</em> (IF 12.1)</div>
+      </article>
+
+      <article class="project-card">
+        <div class="proj-num">PROJECT / 02</div>
+        <h3>Minority Class Detection in Diabetic Diagnosis</h3>
+        <p>ML pipeline for multiclass diabetes prediction (healthy / prediabetic / diabetic) using the CDC BRFSS dataset (253,680 records, 21 features, 84.2% class imbalance). Evaluated 6 resampling strategies across 5 classifiers; applied Borda count consensus ranking for robust feature selection.</p>
+        <div class="project-result"><strong>Result:</strong> Tomek Links + LightGBM/CatBoost achieved best performance; 15% improvement in recall for minority classes, prioritizing low false-negatives for clinical use.</div>
+        <div class="project-tags">
+          <span>Optuna</span>
+          <span>SMOTE / Tomek Links</span>
+          <span>LightGBM</span>
+          <span>CatBoost</span>
+          <span>Python</span>
+        </div>
+        <div class="pub-ref">Working paper - under review (2026)</div>
+      </article>
+
+      <article class="project-card">
+        <div class="proj-num">PROJECT / 03</div>
+        <h3>Conversion Pattern Mining for Digital Marketing Campaigns</h3>
+        <p>End-to-end data mining project on 8,000 customer records identifying the behaviors and campaign traits that drive conversions. Full KDD pipeline — EDA, three classifiers (Logistic Regression, Decision Tree, Random Forest), and an Apriori association-rule miner implemented from scratch; handled an 87.6% imbalanced target with class weighting and evaluated on lift and ROC-AUC.</p>
+        <div class="project-result"><strong>Result:</strong> Random Forest reached 0.90 accuracy and 0.81 ROC-AUC; behavioral signals (time on site, pages/visit, CTR, ad spend) far outweighed demographics, with high-spend Conversion campaigns confirmed at 95-96% confidence.</div>
+        <div class="project-tags">
+          <span>Python</span>
+          <span>scikit-learn</span>
+          <span>Random Forest</span>
+          <span>Apriori (from scratch)</span>
+          <span>pandas</span>
+        </div>
+        <div class="pub-ref"><a href="https://github.com/ebiisharifi/digital-marketing-conversion-analysis" target="_blank" rel="noopener">&rarr; View on GitHub</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section class="content reveal" id="publications">
+    <div class="section-header">
+      <div class="section-num"><strong>05</strong> / Publications</div>
+      <div class="section-title">
+        <h2>Papers &amp; <em>journals</em>.</h2>
+        <p class="section-subtitle">Peer-reviewed publications and active research outputs.</p>
+      </div>
+    </div>
+
+    <div class="pub-section">
+      <div class="pub-section-title">Peer-Reviewed Journals <span class="count">9 publications</span></div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-year">2025</div>
+          <div class="pub-body">
+            <div class="pub-title">Sustainable food supply chain network design and optimization: A systematic literature review</div>
+            <div class="pub-authors">Bateni, F., <strong>Sharifi, E.</strong>, Amin, S. H., et al.</div>
+            <div class="pub-venue"><span class="journal">Journal of Data, Information and Management</span></div>
+            <a class="pub-link" href="https://doi.org/10.1007/s42488-025-00156-1" target="_blank" rel="noopener">→ doi.org/10.1007/s42488-025-00156-1</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2023</div>
+          <div class="pub-body">
+            <div class="pub-title">Designing a Sustainable, Resilient, and Responsive Wheat Supply Chain under Mixed Uncertainty: A Multi-Objective Approach</div>
+            <div class="pub-authors"><strong>Sharifi, E.</strong>, Amin, S. H., &amp; Fang, L.</div>
+            <div class="pub-venue"><span class="journal">Journal of Cleaner Production</span>, Elsevier, 140076 <span class="badge">IF 9.8</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2023</div>
+          <div class="pub-body">
+            <div class="pub-title">A Novel Two-Stage Multi-Objective Optimization Model for Sustainable Soybean Supply Chain Design under Uncertainty</div>
+            <div class="pub-authors"><strong>Sharifi, E.</strong>, Fang, L., &amp; Amin, S. H.</div>
+            <div class="pub-venue"><span class="journal">Sustainable Production and Consumption</span>, Elsevier, 40, 297-317 <span class="badge">IF 12.1</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2023</div>
+          <div class="pub-body">
+            <div class="pub-title">Assessing Sustainability of Food Supply Chains by Using a Novel Method Integrating Group Multi-Criteria Decision-Making and Interval Type-2 Fuzzy Set</div>
+            <div class="pub-authors"><strong>Sharifi, E.</strong>, Amin, S. H., &amp; Fang, L.</div>
+            <div class="pub-venue"><span class="journal">Environment, Development and Sustainability</span>, Springer, 1-41 <span class="badge">IF 4.9</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2020</div>
+          <div class="pub-body">
+            <div class="pub-title">Optimization of High-Strength Self-Consolidating Concrete Mix Design Using an Improved Taguchi Optimization Method</div>
+            <div class="pub-authors"><strong>Sharifi, E.</strong>, Sadjadi, S. J., Aliha, M. R. M., &amp; Moniri, A.</div>
+            <div class="pub-venue"><span class="journal">Construction and Building Materials</span>, Elsevier, 236, 117547 <span class="badge">IF 7.4</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2020</div>
+          <div class="pub-body">
+            <div class="pub-title">An Integrated Weighting and Ranking Model Based on Entropy, DEA and PCA Considering Two Aggregation Approaches for Resilient Supplier Selection</div>
+            <div class="pub-authors">Davoudabadi, R., Mousavi, S. M., &amp; <strong>Sharifi, E.</strong></div>
+            <div class="pub-venue"><span class="journal">Journal of Computational Science</span>, Elsevier, 40, 101074 <span class="badge">IF 3.3</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2020</div>
+          <div class="pub-body">
+            <div class="pub-title">Multi-Expert Multi-Criteria Decision Making Based on the Likelihoods of Interval Type-2 Trapezoidal Fuzzy Preference Relations</div>
+            <div class="pub-authors">Hendiani, S., Jiang, L., <strong>Sharifi, E.</strong>, &amp; Liao, H.</div>
+            <div class="pub-venue"><span class="journal">International Journal of Machine Learning and Cybernetics</span>, Springer, 11(12), 2719-2741 <span class="badge">IF 5.6</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2019</div>
+          <div class="pub-body">
+            <div class="pub-title">A Multi-Criteria Sustainability Assessment Approach for Energy Systems Using Sustainability Triple Bottom Line Attributes and Linguistic Preferences</div>
+            <div class="pub-authors">Hendiani, S., <strong>Sharifi, E.</strong>, Bagherpour, M., &amp; Ghannadpour, S. F.</div>
+            <div class="pub-venue"><span class="journal">Environment, Development and Sustainability</span>, Springer <span class="badge">IF 4.9</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2019</div>
+          <div class="pub-body">
+            <div class="pub-title">A Lot Sizing Model for Imperfect and Deteriorating Products with Destructive Testing and Inspection Errors</div>
+            <div class="pub-authors"><strong>Sharifi, E.</strong>, Hasanpour, J., &amp; Taleizadeh, A. A.</div>
+            <div class="pub-venue"><span class="journal">International Journal of Systems Science: Operations &amp; Logistics</span>, Taylor &amp; Francis <span class="badge">IF 4.2</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pub-section">
+      <div class="pub-section-title">Working Papers <span class="count">3 under review</span></div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-year">2026</div>
+          <div class="pub-body">
+            <div class="pub-title">Designing a Sustainable Food Supply Chain Integrating Supplier Selection and Order Allocation Using Fuzzy Multi-Criteria Decision-Making Methods</div>
+            <div class="pub-authors"><strong>Sharifi, E.</strong>, Amin, S. H., &amp; Fang, L.</div>
+            <div class="pub-venue"><span class="badge review">Under review</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2026</div>
+          <div class="pub-body">
+            <div class="pub-title">Advancing Minority Class Detection in Diabetic Diagnosis through Borda-Based Feature Selection and Hybrid Resampling</div>
+            <div class="pub-authors">Saravanan, A., <strong>Sharifi, E.</strong>, &amp; Amin, S. H.</div>
+            <div class="pub-venue"><span class="badge review">Under review</span></div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2025</div>
+          <div class="pub-body">
+            <div class="pub-title">A Sustainable Forest-Based Biomass Supply Chain Network Redesign: A Robust Optimization Approach</div>
+            <div class="pub-authors">Rahiminia, S., <strong>Sharifi, E.</strong>, Amin, S. H., &amp; Fang, L.</div>
+            <div class="pub-venue"><span class="badge review">Under review</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pub-section">
+      <div class="pub-section-title">Editorial &amp; Review Activity</div>
+      <div class="affil-list">
+        <div class="affil-item"><span class="affil-acronym">×6</span><span class="affil-name">Reviewer · Environment, Development, and Sustainability (Springer)</span></div>
+        <div class="affil-item"><span class="affil-acronym">×3</span><span class="affil-name">Reviewer · Journal of Cleaner Production (Elsevier)</span></div>
+        <div class="affil-item"><span class="affil-acronym">×1</span><span class="affil-name">Reviewer · Construction and Building Materials (Elsevier)</span></div>
+        <div class="affil-item"><span class="affil-acronym">×1</span><span class="affil-name">Reviewer · Transportation Research Part E: Logistics and Transportation Review (Elsevier)</span></div>
+        <div class="affil-item"><span class="affil-acronym">×1</span><span class="affil-name">Reviewer · Cleaner Logistics and Supply Chain (Elsevier)</span></div>
+        <div class="affil-item"><span class="affil-acronym">×1</span><span class="affil-name">Reviewer · Green Technologies and Sustainability (Elsevier)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFERENCES -->
+  <section class="content reveal" id="conferences">
+    <div class="section-header">
+      <div class="section-num"><strong>06</strong> / Conferences</div>
+      <div class="section-title">
+        <h2>Conference <em>contributions</em>.</h2>
+        <p class="section-subtitle">Presentations, proceedings, and sessions chaired.</p>
+      </div>
+    </div>
+
+    <div class="pub-section">
+      <div class="pub-section-title">Conference Presentations &amp; Proceedings</div>
+      <div class="conf-list">
+
+        <div class="conf-item">
+          <div class="conf-date">Jun 2023</div>
+          <div class="conf-body">
+            <h4>Developing a Novel Sustainable, Resilient, and Responsive Wheat Supply Chain Network</h4>
+            <div class="conf-meta"><span class="place">ASAC 2023 Conference, Management Science Division</span> · Toronto, Canada</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-date">May 2023</div>
+          <div class="conf-body">
+            <h4>Designing a Sustainable, Resilient, and Responsive Wheat Supply Chain Network under an Uncertain Environment</h4>
+            <div class="conf-meta"><span class="place">CORS / Optimization Days 2023</span> · Montreal, Canada</div>
+            <span class="conf-role">Presenter</span>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-date">Oct 2022</div>
+          <div class="conf-body">
+            <h4>A Stochastic Multi-Objective Model for Sustainable Soybean Supply Chain Network Configuration</h4>
+            <div class="conf-meta"><span class="place">GJCIE 2022 (Hybrid Global Joint Conference on Industrial Engineering)</span> · Springer Nature, pp. 238-249</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-date">Jun 2022</div>
+          <div class="conf-body">
+            <h4>Developing a New Hybrid Multi-Objective Optimization Model for Soybean Supply Chain Configuration with Sustainable Considerations</h4>
+            <div class="conf-meta"><span class="place">CORS / INFORMS International Conference</span> · Vancouver, Canada</div>
+            <span class="conf-role">Chair · Supply Chain Optimization Session</span>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-date">2021</div>
+          <div class="conf-body">
+            <h4>A New Fuzzy Group Decision-Making Approach for Evaluating Sustainability of Food Supply Chains</h4>
+            <div class="conf-meta"><span class="place">IISE Annual Conference Proceedings</span> · 199-204</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-date">Jun 2021</div>
+          <div class="conf-body">
+            <h4>A Fuzzy Hierarchical Group Decision Approach for Sustainability Assessment of Food Supply Chains</h4>
+            <div class="conf-meta"><span class="place">21st International Conference on Group Decision and Negotiation</span> · Toronto, Canada, pp. 141-143</div>
+            <span class="conf-role">Refereed Extended Abstract</span>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-date">2018</div>
+          <div class="conf-body">
+            <h4>A Model for Perishable Items Inventory Control with Fuzzy Demands</h4>
+            <div class="conf-meta"><span class="place">14th International Conference on Industrial Engineering</span> · Tehran, Iran</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-date">2018</div>
+          <div class="conf-body">
+            <h4>A Conceptual Inventory Model Using Demand Forecasting Techniques and EOQ</h4>
+            <div class="conf-meta"><span class="place">5th International Conference on Iran Automotive Industry</span> · Tehran, Iran</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-date">2016</div>
+          <div class="conf-body">
+            <h4>New Mathematical Modeling for Perishable Items Inventory Control with Acceptance Sampling</h4>
+            <div class="conf-meta"><span class="place">12th International Conference on Industrial Engineering</span> · Tehran, Iran</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HONORS & AFFILIATIONS -->
+  <section class="content reveal" id="honors">
+    <div class="section-header">
+      <div class="section-num"><strong>07</strong> / Honors &amp; Affiliations</div>
+      <div class="section-title">
+        <h2>Awards, <em>scholarships</em>, &amp; memberships.</h2>
+      </div>
+    </div>
+
+    <div class="honors-grid">
+      <div class="honors-block">
+        <h3>Honors &amp; Awards</h3>
+        <div class="honors-list">
+
+          <div class="honor-item">
+            <div class="honor-icon">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
+            </div>
+            <div class="honor-body">
+              <h4>Nominated · Governor General's Gold Medal</h4>
+              <p>Highest academic honour in Canada - for outstanding doctoral dissertation. Toronto Metropolitan University.</p>
+            </div>
+          </div>
+
+          <div class="honor-item">
+            <div class="honor-icon">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <div class="honor-body">
+              <h4>TMU Doctoral Tuition Scholarship (International)</h4>
+              <p>2020 - 2024 · Three years of full tuition</p>
+              <p class="amount">+ $24,000 stipend</p>
+            </div>
+          </div>
+
+          <div class="honor-item">
+            <div class="honor-icon">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <div class="honor-body">
+              <h4>Toronto Met Graduate Scholarship (TMGS)</h4>
+              <p>2023 - 2024 · Awarded for academic excellence</p>
+              <p class="amount">$15,000</p>
+            </div>
+          </div>
+
+          <div class="honor-item">
+            <div class="honor-icon">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <div class="honor-body">
+              <h4>MIE Graduate Studies Award</h4>
+              <p>2022 - 2023 · Mechanical &amp; Industrial Engineering</p>
+              <p class="amount">$2,000</p>
+            </div>
+          </div>
+
+          <div class="honor-item">
+            <div class="honor-icon">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            </div>
+            <div class="honor-body">
+              <h4>Diploma in Operational Research</h4>
+              <p>Canadian Operational Research Society (CORS), 2021</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="honors-block">
+        <h3>Professional Affiliations</h3>
+        <div class="affil-list">
+          <div class="affil-item">
+            <span class="affil-acronym">PEO</span>
+            <span class="affil-name">Professional Engineers Ontario - Licensed P.Eng.</span>
+          </div>
+          <div class="affil-item">
+            <span class="affil-acronym">ENS</span>
+            <span class="affil-name">Engineers Nova Scotia - Member #20250461</span>
+          </div>
+          <div class="affil-item">
+            <span class="affil-acronym">CORS</span>
+            <span class="affil-name">Canadian Operational Research Society</span>
+          </div>
+          <div class="affil-item">
+            <span class="affil-acronym">INFORMS</span>
+            <span class="affil-name">Institute for Operations Research and the Management Sciences</span>
+          </div>
+          <div class="affil-item">
+            <span class="affil-acronym">ASAC</span>
+            <span class="affil-name">Administrative Sciences Association of Canada</span>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2.5rem;">Service &amp; Volunteer</h3>
+        <div class="affil-list">
+          <div class="affil-item">
+            <span class="affil-acronym">2021</span>
+            <span class="affil-name">Technical support - 21st International Conference on Group Decision and Negotiation</span>
+          </div>
+          <div class="affil-item">
+            <span class="affil-acronym">2021-22</span>
+            <span class="affil-name">Student Representative · Graduate Council and Department Council, TMU</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="content reveal" id="certifications">
+    <div class="section-header">
+      <div class="section-num"><strong>08</strong> / Certifications</div>
+      <div class="section-title">
+        <h2>Licenses &amp; <em>certifications</em>.</h2>
+        <p class="section-subtitle">Verified credentials in engineering, analytics, and operations research.</p>
+      </div>
+    </div>
+
+    <div class="cert-grid">
+
+      <article class="cert-card">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">PE</div>
+          <div class="cert-issuer">Engineers Nova Scotia</div>
+        </div>
+        <h3>Professional Engineer (P.Eng.)</h3>
+        <div class="cert-meta">
+          <span>Issued · Feb 2026</span>
+          <span>Member #20250461</span>
+        </div>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">CORS</div>
+          <div class="cert-issuer">Canadian Operational Research Society</div>
+        </div>
+        <h3>Diploma in Operational Research</h3>
+        <div class="cert-meta">
+          <span>Issued · Jul 2021</span>
+        </div>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">IBM</div>
+          <div class="cert-issuer">IBM &middot; Coursera</div>
+        </div>
+        <h3>Tools for Data Science</h3>
+        <div class="cert-meta">
+          <span>Issued · May 2026</span>
+          <span>ID · B2XMM4573LJK</span>
+        </div>
+        <a class="cert-verify" href="https://www.coursera.org/account/accomplishments/verify/B2XMM4573LJK" target="_blank" rel="noopener">
+          Verify credential
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-issuer-row">
+          <div class="cert-logo">CU</div>
+          <div class="cert-issuer">University of Colorado Boulder &middot; Coursera</div>
+        </div>
+        <h3>Introduction to Data Analytics for Business</h3>
+        <div class="cert-meta">
+          <span>Issued · May 2026</span>
+          <span>ID · YX0CBRS6W5MD</span>
+        </div>
+        <a class="cert-verify" href="https://www.coursera.org/account/accomplishments/verify/YX0CBRS6W5MD" target="_blank" rel="noopener">
+          Verify credential
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section class="content reveal" id="teaching">
+    <div class="section-header">
+      <div class="section-num"><strong>09</strong> / Teaching</div>
+      <div class="section-title">
+        <h2>Courses <em>taught</em>.</h2>
+        <p class="section-subtitle">800+ students. Consistent 4.5 - 4.8 / 5 evaluations.</p>
+      </div>
+    </div>
+    <div class="teaching-grid">
+      <div class="course-card">
+        <div class="code">MGSC-5126</div>
+        <h4>Data Mining</h4>
+        <p>Cape Breton University · Fall 2023 - 2025</p>
+      </div>
+      <div class="course-card">
+        <div class="code">MGSC-5125</div>
+        <h4>Predictive Modeling / Analytics</h4>
+        <p>Cape Breton University · Fall 2023 - 2025</p>
+      </div>
+      <div class="course-card">
+        <div class="code">MGSC-5127</div>
+        <h4>Data Visualization</h4>
+        <p>Cape Breton University · Fall 2023 - 2025</p>
+      </div>
+      <div class="course-card">
+        <div class="code">MGSC-5113</div>
+        <h4>Quantitative Methods</h4>
+        <p>Cape Breton University · Fall 2022 - 2025</p>
+      </div>
+      <div class="course-card">
+        <div class="code">IND600</div>
+        <h4>Systems Modelling &amp; Simulation</h4>
+        <p>Toronto Metropolitan University · Winter 2022 - 2024</p>
+      </div>
+      <div class="course-card">
+        <div class="code">IND508 / 604</div>
+        <h4>Operations Research I &amp; II</h4>
+        <p>Toronto Metropolitan University · 2021</p>
+      </div>
+      <div class="course-card">
+        <div class="code">IND713</div>
+        <h4>Project Management</h4>
+        <p>Toronto Metropolitan University · Fall 2021</p>
+      </div>
+      <div class="course-card">
+        <div class="code">IND832</div>
+        <h4>Reliability &amp; Decision Analysis</h4>
+        <p>Toronto Metropolitan University · Spring/Summer 2021</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="hero-eyebrow" style="color: var(--accent-soft);">Get in touch</div>
+      <h2>Let's <em>connect</em>.</h2>
+      <p class="contact-intro">I'm open to opportunities in business analytics, data analytics, and supply chain analytics across academia and industry in Canada. Feel free to reach out about research collaborations, teaching, or roles.</p>
+      <div class="hero-cta" style="margin-top: 2rem;">
+        <a class="btn btn-primary" href="mailto:esharifi1372@gmail.com">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8l9 6 9-6"/></svg>
+          Send Email
+        </a>
+        <a class="btn btn-secondary" style="border-color: rgba(255,255,255,0.4); color: var(--paper);" href="assets/Ebrahim_Sharifi_Resume.pdf" download>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Resume
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-info">
+      <div class="contact-row">
+        <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8l9 6 9-6"/></svg></div>
+        <div>
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:esharifi1372@gmail.com">esharifi1372@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z"/></svg></div>
+        <div>
+          <div class="label">Phone</div>
+          <div class="value">+1 (647) 212-9446</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="label">Location</div>
+          <div class="value">Toronto, ON, Canada</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon"><svg fill="currentColor" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+        <div>
+          <div class="label">LinkedIn</div>
+          <div class="value"><a href="https://www.linkedin.com/in/ebrahim-sharifi-ph-d-p-eng-2147b781/" target="_blank" rel="noopener">/in/ebrahim-sharifi-ph-d-p-eng</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon"><svg fill="currentColor" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg></div>
+        <div>
+          <div class="label">Google Scholar</div>
+          <div class="value"><a href="https://scholar.google.com/citations?user=1ErF1PwAAAAJ&hl=en" target="_blank" rel="noopener">442 citations · h-index 7</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon"><svg fill="currentColor" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.121 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.062 0 .094.031.094.094 0 .264 0 .463-.014.612a2.7 2.7 0 0 1-.077.51c-.108.405-.316.7-.612.9-.297.197-.7.305-1.2.305-.43 0-.795-.107-1.083-.297-.288-.19-.51-.464-.65-.834a3.179 3.179 0 0 1-.137-.474 6.7 6.7 0 0 1-.087-.628 10.184 10.184 0 0 1-.043-.875c-.005-.348-.012-.764-.012-1.292 0-.526.007-.94.012-1.29.005-.348.018-.638.043-.873.024-.235.054-.444.087-.627.034-.184.08-.342.137-.476.14-.37.354-.65.643-.847.288-.198.65-.297 1.073-.297.36 0 .664.05.918.143.255.096.466.222.636.378.17.158.303.336.403.537.099.2.176.406.227.614.024.094.075.137.156.118l1.31-.275c.087-.023.118-.078.094-.166-.108-.331-.27-.65-.484-.946a3.31 3.31 0 0 0-.79-.795 3.83 3.83 0 0 0-1.107-.54A4.7 4.7 0 0 0 19.586 0z"/></svg></div>
+        <div>
+          <div class="label">ResearchGate</div>
+          <div class="value"><a href="https://www.researchgate.net/profile/Ebrahim-Sharifi?ev=hdr_xprf" target="_blank" rel="noopener">Ebrahim-Sharifi</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Ebrahim Sharifi, Ph.D., P.Eng.</div>
+    <div>Toronto, Canada · <a href="mailto:esharifi1372@gmail.com">esharifi1372@gmail.com</a></div>
+  </div>
+</footer>
+
+<script>
+// Intersection observer for reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Close mobile menu on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
