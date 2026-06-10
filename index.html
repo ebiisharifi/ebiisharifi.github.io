@@ -409,6 +409,72 @@ footer a { color: #a1a1a6; }
 .reveal-scale { opacity: 0; transform: scale(0.96) translateY(20px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
 .reveal-scale.visible { opacity: 1; transform: scale(1) translateY(0); }
 
+/* ===== Dynamic graphics ===== */
+.hero .wrap { position: relative; z-index: 1; }
+.aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.aurora span { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; }
+.aurora .a1 { width: 540px; height: 540px; background: #7dd3fc; top: -200px; left: 6%; animation: drift1 16s ease-in-out infinite alternate; }
+.aurora .a2 { width: 480px; height: 480px; background: #c4b5fd; top: -140px; right: 4%; animation: drift2 20s ease-in-out infinite alternate; }
+.aurora .a3 { width: 430px; height: 430px; background: #f9a8d4; top: 160px; left: 36%; opacity: 0.35; animation: drift3 24s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform: translate(80px, 50px) scale(1.12); } }
+@keyframes drift2 { to { transform: translate(-70px, 80px) scale(1.08); } }
+@keyframes drift3 { to { transform: translate(50px, -60px) scale(1.15); } }
+
+.grad-text { background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite alternate; }
+@keyframes gradShift { to { background-position: 100% 0; } }
+
+.float-chip { animation: bob 5.5s ease-in-out infinite alternate; }
+.float-chip.c2 { animation-delay: 1.6s; }
+@keyframes bob { to { transform: translateY(-10px); } }
+
+.feature-band { position: relative; overflow: hidden; }
+.feature-band::after {
+  content: ''; position: absolute; top: -60%; left: -25%;
+  width: 55%; height: 240%;
+  background: radial-gradient(closest-side, rgba(255,255,255,0.25), transparent 70%);
+  animation: sweep 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes sweep { to { transform: translateX(220%); } }
+.feature-band .f-kicker, .feature-band h3 { position: relative; z-index: 1; }
+
+.spark { width: 100%; max-width: 200px; height: 46px; margin-top: 0.7rem; display: block; }
+.spark path.line { fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 300; stroke-dashoffset: 300; }
+.spark path.area { fill: rgba(255,255,255,0.18); opacity: 0; transition: opacity 1s 1.6s var(--ease); }
+.bento.visible .spark path.line { animation: drawLine 2s 0.4s var(--ease) forwards; }
+.bento.visible .spark path.area { opacity: 1; }
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+.ring-wrap { position: relative; width: 96px; height: 96px; margin-bottom: 0.8rem; }
+.ring-wrap svg { transform: rotate(-90deg); display: block; }
+.ring-bg { stroke: rgba(0,0,0,0.08); }
+.ring-fg { stroke: var(--blue); stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1.8s 0.3s var(--ease); }
+.bento.visible .ring-fg { stroke-dashoffset: 4; }
+.ring-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.4rem; letter-spacing: -0.03em; }
+
+.net-tile { min-height: 230px; }
+.net-tile canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.net-tile .t-label, .net-tile .t-text { position: relative; z-index: 1; }
+
+.spark .dot { fill: #fff; opacity: 0; transition: opacity 0.4s 2.2s; }
+.bento.visible .spark .dot { opacity: 1; }
+.spark .pulse { fill: none; stroke: #fff; stroke-width: 1.5; opacity: 0; }
+.bento.visible .spark .pulse { animation: sparkPulse 2.6s 2.4s ease-out infinite; }
+@keyframes sparkPulse {
+  0% { r: 3; opacity: 0.8; }
+  70% { r: 10; opacity: 0; }
+  100% { r: 10; opacity: 0; }
+}
+
+section.block.dark { position: relative; overflow: hidden; }
+section.block.dark::before {
+  content: ''; position: absolute; top: -260px; left: 50%; transform: translateX(-50%);
+  width: 860px; height: 540px;
+  background: radial-gradient(closest-side, rgba(64, 134, 255, 0.2), transparent 70%);
+  pointer-events: none;
+}
+section.block.dark > * { position: relative; z-index: 1; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .reveal-scale { opacity: 1; transform: none; transition: none; }
@@ -455,6 +521,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
 
   <!-- HERO -->
   <section class="hero">
+    <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
     <div class="wrap">
       <p class="hero-eyebrow">Ph.D. &middot; P.Eng. &middot; Industrial Engineer</p>
       <h1>Analytics.<br/><span class="grad-text">Engineered.</span></h1>
@@ -477,7 +544,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
       <div class="hero-portrait reveal-scale">
         <img src="assets/profile.jpeg" alt="Ebrahim Sharifi portrait" />
         <div class="float-chip c1">
-          <div class="big grad-text">442</div>
+          <div class="big grad-text">465</div>
           <div class="small">Google Scholar citations</div>
         </div>
         <div class="float-chip c2">
@@ -513,12 +580,23 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
         </div>
         <div class="tile gradient">
           <div class="t-label">Citations</div>
-          <div class="t-big" data-count="442">0</div>
+          <div class="t-big" data-count="465">0</div>
           <div class="t-text">Google Scholar</div>
+          <svg class="spark" viewBox="0 0 120 46" preserveAspectRatio="none" aria-hidden="true">
+            <path class="area" d="M2 42 C 20 40, 32 35, 46 29 C 60 23, 74 18, 88 12 C 100 7, 110 5, 118 3 L 118 46 L 2 46 Z" />
+            <path class="line" pathLength="300" d="M2 42 C 20 40, 32 35, 46 29 C 60 23, 74 18, 88 12 C 100 7, 110 5, 118 3" />
+            <circle class="pulse" cx="118" cy="3" r="3" />
+            <circle class="dot" cx="118" cy="3" r="3" />
+          </svg>
         </div>
         <div class="tile">
           <div class="t-label">Students taught</div>
           <div class="t-big" data-count="800" data-suffix="+">0</div>
+        </div>
+        <div class="tile span2 dark net-tile">
+          <canvas id="netCanvas" aria-hidden="true"></canvas>
+          <div class="t-label">Field</div>
+          <div class="t-text" style="color: #fff;">Supply chain networks, modeled and optimized. A glimpse of the systems behind my research.</div>
         </div>
         <div class="tile span2">
           <div class="t-label">Toolkit</div>
@@ -534,6 +612,22 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
         <div class="tile span2">
           <div class="t-label">Before academia</div>
           <div class="t-text">Four years in industry as a project manager and supply chain analyst at SAIPA Automotive Group: multi-criteria decision frameworks and automated executive reporting.</div>
+        </div>
+        <div class="tile">
+          <div class="ring-wrap">
+            <svg viewBox="0 0 100 100" width="96" height="96" aria-hidden="true">
+              <circle class="ring-bg" cx="50" cy="50" r="40" fill="none" stroke-width="9"/>
+              <circle class="ring-fg" cx="50" cy="50" r="40" fill="none" stroke-width="9" stroke-linecap="round" pathLength="100"/>
+            </svg>
+            <div class="ring-num">4.8</div>
+          </div>
+          <div class="t-label">Teaching evaluations</div>
+          <div class="t-text">Top score, out of 5</div>
+        </div>
+        <div class="tile">
+          <div class="t-label">Peer reviews completed</div>
+          <div class="t-big" data-count="30" data-suffix="+">0</div>
+          <div class="t-text">Across 10 journals</div>
         </div>
       </div>
     </div>
@@ -719,7 +813,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
     <div class="block-head">
       <p class="kicker">Publications</p>
       <h2>Publications.</h2>
-      <p class="sub">9 peer-reviewed papers. 442 citations. h-index 7.</p>
+      <p class="sub">9 peer-reviewed papers. 465 citations. h-index 7.</p>
     </div>
 
     <div class="pub-group">
@@ -840,14 +934,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
     </div>
 
     <div class="pub-group">
-      <div class="pub-group-title">Editorial &amp; Review Activity <span class="count">13 reviews</span></div>
+      <div class="pub-group-title">Editorial &amp; Review Activity <span class="count">30+ reviews &middot; 10 journals</span></div>
+      <p style="color: #a1a1a6; font-size: 0.93rem; margin-top: 0.7rem;">30+ peer reviews completed across 10 journals, including:</p>
       <div class="review-strip">
-        <span><b>x6</b> Environment, Development, and Sustainability</span>
-        <span><b>x3</b> Journal of Cleaner Production</span>
-        <span><b>x1</b> Construction and Building Materials</span>
-        <span><b>x1</b> Transportation Research Part E</span>
-        <span><b>x1</b> Cleaner Logistics and Supply Chain</span>
-        <span><b>x1</b> Green Technologies and Sustainability</span>
+        <span>Environment, Development, and Sustainability</span>
+        <span>Journal of Cleaner Production</span>
+        <span>Construction and Building Materials</span>
+        <span>Transportation Research Part E</span>
+        <span>Cleaner Logistics and Supply Chain</span>
+        <span>Green Technologies and Sustainability</span>
+        <span><b>+ 4 more</b></span>
       </div>
     </div>
   </section>
@@ -1120,7 +1216,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
       </a>
       <a class="contact-tile" href="https://scholar.google.com/citations?user=1ErF1PwAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="c-label">Google Scholar</div>
-        <div class="c-value">442 citations &middot; h-index 7</div>
+        <div class="c-value">465 citations &middot; h-index 7</div>
       </a>
       <a class="contact-tile" href="https://www.researchgate.net/profile/Ebrahim-Sharifi?ev=hdr_xprf" target="_blank" rel="noopener">
         <div class="c-label">ResearchGate</div>
@@ -1203,6 +1299,110 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
       document.querySelector('.nav-links').classList.remove('open');
     });
   });
+
+  // Animated supply chain network in bento tile
+  var canvas = document.getElementById('netCanvas');
+  if (canvas) {
+    var ctx = canvas.getContext('2d');
+    var nodes = [], edges = [], flows = [];
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function buildNetwork(w, h) {
+      nodes = []; edges = []; flows = [];
+      var count = w < 480 ? 12 : 18;
+      for (var i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.22,
+          vy: (Math.random() - 0.5) * 0.22,
+          r: 1.8 + Math.random() * 2.4
+        });
+      }
+      for (var a = 0; a < nodes.length; a++) {
+        var dists = [];
+        for (var b = 0; b < nodes.length; b++) {
+          if (a === b) continue;
+          var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
+          dists.push({ i: b, d: dx * dx + dy * dy });
+        }
+        dists.sort(function (p, q) { return p.d - q.d; });
+        for (var k = 0; k < 2 && k < dists.length; k++) {
+          var b2 = dists[k].i;
+          var exists = edges.some(function (e) {
+            return (e.a === a && e.b === b2) || (e.a === b2 && e.b === a);
+          });
+          if (!exists) edges.push({ a: a, b: b2 });
+        }
+      }
+      edges.forEach(function (e, idx) {
+        if (idx % 2 === 0) flows.push({ edge: e, t: Math.random(), speed: 0.003 + Math.random() * 0.003 });
+      });
+    }
+
+    function sizeCanvas() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildNetwork(rect.width, rect.height);
+    }
+
+    function drawFrame() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      var w = rect.width, h = rect.height;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.14)';
+      ctx.lineWidth = 1;
+      edges.forEach(function (e) {
+        ctx.beginPath();
+        ctx.moveTo(nodes[e.a].x, nodes[e.a].y);
+        ctx.lineTo(nodes[e.b].x, nodes[e.b].y);
+        ctx.stroke();
+      });
+
+      nodes.forEach(function (n) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(121, 184, 255, 0.85)';
+        ctx.fill();
+      });
+
+      ctx.fillStyle = 'rgba(249, 168, 212, 0.95)';
+      flows.forEach(function (p) {
+        var a = nodes[p.edge.a], b = nodes[p.edge.b];
+        var x = a.x + (b.x - a.x) * p.t;
+        var y = a.y + (b.y - a.y) * p.t;
+        ctx.beginPath();
+        ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function tick() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      nodes.forEach(function (n) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > rect.width) n.vx *= -1;
+        if (n.y < 0 || n.y > rect.height) n.vy *= -1;
+      });
+      flows.forEach(function (p) {
+        p.t += p.speed;
+        if (p.t > 1) p.t = 0;
+      });
+      drawFrame();
+      requestAnimationFrame(tick);
+    }
+
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
+    if (reducedMotion) {
+      drawFrame();
+    } else {
+      requestAnimationFrame(tick);
+    }
+  }
 })();
 </script>
 
